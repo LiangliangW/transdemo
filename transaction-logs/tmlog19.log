@@ -1,0 +1,2 @@
+{"id":"10.2.144.92.tm154027779776800001","wasCommitted":true,"participants":[{"uri":"10.2.144.92.tm1","state":"COMMITTING","expires":1540277807728,"resourceName":"jta-user"},{"uri":"10.2.144.92.tm2","state":"COMMITTING","expires":1540277807728,"resourceName":"jta-income"}]}
+{"id":"10.2.144.92.tm154027779776800001","wasCommitted":true,"participants":[{"uri":"10.2.144.92.tm1","state":"TERMINATED","expires":1540277807732,"resourceName":"jta-user"},{"uri":"10.2.144.92.tm2","state":"TERMINATED","expires":1540277807732,"resourceName":"jta-income"}]}
