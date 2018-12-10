@@ -7,7 +7,6 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
@@ -20,7 +19,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
  */
 @Configuration
 @EnableConfigurationProperties
-@EnableAutoConfiguration
 @MapperScan(basePackages = "com.wll.transdemo.mapper.income", sqlSessionTemplateRef = "jtaIncomeSqlSessionTemplate")
 public class DataSourceJTAIncomeConfig {
     @Bean

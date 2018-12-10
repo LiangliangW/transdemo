@@ -1,6 +1,7 @@
 package com.wll.transdemo.controller;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,6 +86,26 @@ public class IncomeController {
             User user = new User();
             user.setName(name);
             userMapper.insertSelective(user);
+
+            this.throwRuntimeException();
+
+            return RESULT_SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+            // return RESULT_FAILED + ":" + e.getMessage();
+        }
+    }
+
+    @GetMapping("/addincome/4")
+    @Transactional
+    public String addIncome4(@RequestParam("name") String name, @RequestParam("amount") float amount) {
+        try {
+            Income income = new Income();
+            income.setUserId(new Date().getSeconds());
+            income.setAmount(amount);
+            income.setOperateDate(new Timestamp(System.currentTimeMillis()));
+            incomeMapper.insertSelective(income);
 
             this.throwRuntimeException();
 

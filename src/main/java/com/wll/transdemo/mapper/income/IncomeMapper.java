@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.wll.transdemo.model.Income;
 
+@Mapper
 public interface IncomeMapper {
     int deleteByPrimaryKey(Integer id);
 

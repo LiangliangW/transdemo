@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.wll.transdemo.model.User;
 
+@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
