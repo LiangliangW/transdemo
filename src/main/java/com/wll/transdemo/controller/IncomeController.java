@@ -87,7 +87,7 @@ public class IncomeController {
             user.setName(name);
             userMapper.insertSelective(user);
 
-            this.throwRuntimeException();
+//            this.throwRuntimeException();
 
             return RESULT_SUCCESS;
         } catch (Exception e) {

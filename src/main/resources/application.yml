@@ -27,5 +27,11 @@ spring:
           min-pool-size: 3
           max-lifetime: 20000
           borrow-connection-timeout: 10000
+
+
+mybatis:
+  type-aliases-package: com.wll.transdemo.model
+  mapper-locations: classpath*:mapping/*Mapper.xml
+
 server:
   port: 9090
