@@ -17,12 +17,33 @@ spring:
           min-pool-size: 3
           max-lifetime: 20000
           borrow-connection-timeout: 10000
+
+        jta-user-slave:
+          xa-properties.url: jdbc:mysql://localhost:3306/jta-user-slave
+          xa-properties.user: root
+          xa-properties.password: rootroot
+          xa-data-source-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+          unique-resource-name: jta-user-slave
+          max-pool-size: 25
+          min-pool-size: 3
+          max-lifetime: 20000
+          borrow-connection-timeout: 10000
         jta-income:
           xa-properties.url: jdbc:mysql://localhost:3306/jta-income
           xa-properties.user: root
           xa-properties.password: rootroot
           xa-data-source-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
           unique-resource-name: jta-income
+          max-pool-size: 25
+          min-pool-size: 3
+          max-lifetime: 20000
+          borrow-connection-timeout: 10000
+        jta-income-slave:
+          xa-properties.url: jdbc:mysql://localhost:3306/jta-income-slave
+          xa-properties.user: root
+          xa-properties.password: rootroot
+          xa-data-source-class-name: com.mysql.jdbc.jdbc2.optional.MysqlXADataSource
+          unique-resource-name: jta-income-slave
           max-pool-size: 25
           min-pool-size: 3
           max-lifetime: 20000

@@ -3,7 +3,10 @@ package com.wll.transdemo.controller;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,9 @@ import com.wll.transdemo.model.User;
 @RequestMapping("/income")
 public class IncomeController {
 
+    private static final Logger logger = LoggerFactory.getLogger(IncomeController.class);
+
+
     public static final String RESULT_SUCCESS = "success";
     public static final String RESULT_FAILED = "failed";
 
@@ -32,19 +38,27 @@ public class IncomeController {
     private UserMapper userMapper;
 
     @GetMapping("/addincome/1")
-    @Transactional
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public String addIncome1(@RequestParam("name") String name, @RequestParam("amount") float amount) {
 
         try {
+
             User user = new User();
             user.setName(name);
             userMapper.insertSelective(user);
+
 
             Income income = new Income();
             income.setUserId(user.getId());
             income.setAmount(amount);
             income.setOperateDate(new Timestamp(System.currentTimeMillis()));
             incomeMapper.insertSelective(income);
+
+            User user1 = userMapper.selectByPrimaryKey(2);
+            logger.info("user1:" + user1.getName());
+
+            Income income1 = incomeMapper.selectByPrimaryKey(2);
+            logger.info("income1:" + income1.getAmount());
 
             return RESULT_SUCCESS;
         } catch (Exception e) {
@@ -62,7 +76,7 @@ public class IncomeController {
             user.setName(name);
             userMapper.insertSelective(user);
 
-            this.throwRuntimeException();
+//            this.throwRuntimeException();
 
             Income income = new Income();
             income.setUserId(user.getId());
@@ -107,7 +121,7 @@ public class IncomeController {
             income.setOperateDate(new Timestamp(System.currentTimeMillis()));
             incomeMapper.insertSelective(income);
 
-            this.throwRuntimeException();
+//            this.throwRuntimeException();
 
             return RESULT_SUCCESS;
         } catch (Exception e) {

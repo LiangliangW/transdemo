@@ -3,12 +3,12 @@
 <mapper namespace="com.wll.transdemo.mapper.income.IncomeMapper" >
   <resultMap id="BaseResultMap" type="com.wll.transdemo.model.Income" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="amount" property="amount" jdbcType="REAL" />
-    <result column="operateDate" property="operatedate" jdbcType="TIMESTAMP" />
+    <result column="operate_date" property="operateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, userId, amount, operateDate
+    id, user_id, amount, operate_date
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -21,9 +21,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.wll.transdemo.model.Income" >
-    insert into income (id, userId, amount, 
-      operateDate)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{amount,jdbcType=REAL},
+    insert into income (id, user_id, amount, 
+      operate_date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{amount,jdbcType=REAL}, 
       #{operateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.wll.transdemo.model.Income" >
@@ -33,13 +33,13 @@
         id,
       </if>
       <if test="userId != null" >
-        userId,
+        user_id,
       </if>
       <if test="amount != null" >
         amount,
       </if>
       <if test="operateDate != null" >
-        operateDate,
+        operate_date,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -60,23 +60,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.wll.transdemo.model.Income" >
     update income
     <set >
-      <if test="userid != null" >
-        userId = #{userid,jdbcType=INTEGER},
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="amount != null" >
         amount = #{amount,jdbcType=REAL},
       </if>
-      <if test="operatedate != null" >
-        operateDate = #{operatedate,jdbcType=TIMESTAMP},
+      <if test="operateDate != null" >
+        operate_date = #{operateDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.wll.transdemo.model.Income" >
     update income
-    set userId = #{userid,jdbcType=INTEGER},
+    set user_id = #{userId,jdbcType=INTEGER},
       amount = #{amount,jdbcType=REAL},
-      operateDate = #{operatedate,jdbcType=TIMESTAMP}
+      operate_date = #{operateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

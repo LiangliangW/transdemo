@@ -1,10 +1,10 @@
 package com.wll.transdemo.mapper.income;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import com.wll.transdemo.model.Income;
 
-@Mapper
+@Repository
 public interface IncomeMapper {
     int deleteByPrimaryKey(Integer id);
 

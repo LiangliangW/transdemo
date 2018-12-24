@@ -8,7 +8,9 @@ import lombok.Getter;
 @Getter
 public enum DataSourceTypeEnum {
     USER("user"),
-    INCOME("income");
+    INCOME("income"),
+    USER_SLAVE("user-slave"),
+    INCOME_SLAVE("income-slave");
 
     private String name;
 
