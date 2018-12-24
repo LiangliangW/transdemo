@@ -38,7 +38,7 @@ public class IncomeController {
     private UserMapper userMapper;
 
     @GetMapping("/addincome/1")
-    @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    @Transactional
     public String addIncome1(@RequestParam("name") String name, @RequestParam("amount") float amount) {
 
         try {
