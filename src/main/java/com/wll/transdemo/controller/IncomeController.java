@@ -42,6 +42,8 @@ public class IncomeController {
     public String addIncome1(@RequestParam("name") String name, @RequestParam("amount") float amount) {
 
         try {
+            User user1 = userMapper.selectByPrimaryKey(2);
+            logger.info("user1:" + user1.getName());
 
             User user = new User();
             user.setName(name);
@@ -54,8 +56,6 @@ public class IncomeController {
             income.setOperateDate(new Timestamp(System.currentTimeMillis()));
             incomeMapper.insertSelective(income);
 
-            User user1 = userMapper.selectByPrimaryKey(2);
-            logger.info("user1:" + user1.getName());
 
             Income income1 = incomeMapper.selectByPrimaryKey(2);
             logger.info("income1:" + income1.getAmount());
@@ -76,7 +76,6 @@ public class IncomeController {
             user.setName(name);
             userMapper.insertSelective(user);
 
-//            this.throwRuntimeException();
 
             Income income = new Income();
             income.setUserId(user.getId());
@@ -84,6 +83,7 @@ public class IncomeController {
             income.setOperateDate(new Timestamp(System.currentTimeMillis()));
             incomeMapper.insertSelective(income);
 
+            this.throwRuntimeException();
             return RESULT_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
