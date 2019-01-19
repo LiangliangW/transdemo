@@ -20,6 +20,8 @@ import com.wll.transdemo.model.User;
 
 /**
  * Created by WLL on 2018/10/23 10:56
+ * user：主库：name1；从库：wll
+ * income：主库：1.00；从库：222.00
  */
 @RestController
 @RequestMapping("/income")
@@ -101,7 +103,7 @@ public class IncomeController {
             user.setName(name);
             userMapper.insertSelective(user);
 
-//            this.throwRuntimeException();
+            this.throwRuntimeException();
 
             return RESULT_SUCCESS;
         } catch (Exception e) {
@@ -121,13 +123,42 @@ public class IncomeController {
             income.setOperateDate(new Timestamp(System.currentTimeMillis()));
             incomeMapper.insertSelective(income);
 
-//            this.throwRuntimeException();
+            this.throwRuntimeException();
 
             return RESULT_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
             // return RESULT_FAILED + ":" + e.getMessage();
+        }
+    }
+
+    @GetMapping("/addincome/5")
+    public String addIncome5(@RequestParam("name") String name, @RequestParam("amount") float amount) {
+
+        try {
+            User user1 = userMapper.selectByPrimaryKey(2);
+            logger.info("user1:" + user1.getName());
+
+            User user = new User();
+            user.setName(name);
+            userMapper.insertSelective(user);
+
+
+            Income income = new Income();
+            income.setUserId(user.getId());
+            income.setAmount(amount);
+            income.setOperateDate(new Timestamp(System.currentTimeMillis()));
+            incomeMapper.insertSelective(income);
+
+
+            Income income1 = incomeMapper.selectByPrimaryKey(2);
+            logger.info("income1:" + income1.getAmount());
+
+            return RESULT_SUCCESS;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return RESULT_FAILED + ":" + e.getMessage();
         }
     }
 
